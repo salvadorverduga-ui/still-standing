@@ -400,28 +400,15 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
     <div class="section">
       <div class="section-title">Por categoría</div>
-      <div class="btn-grid three">
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Comida'))"><span class="icon">🍔</span><span class="label">Comida</span></button>
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Transporte'))"><span class="icon">🚗</span><span class="label">Transporte</span></button>
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Ocio'))"><span class="icon">🎮</span><span class="label">Ocio</span></button>
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Tienda'))"><span class="icon">🛒</span><span class="label">Tienda</span></button>
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Trámites'))"><span class="icon">📋</span><span class="label">Trámites</span></button>
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Family'))"><span class="icon">👨‍👩‍👧</span><span class="label">Family</span></button>
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Arriendo'))"><span class="icon">🏠</span><span class="label">Arriendo</span></button>
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Necesidad'))"><span class="icon">🧾</span><span class="label">Necesidad</span></button>
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Herramienta'))"><span class="icon">🔧</span><span class="label">Herramienta</span></button>
-        <button class="btn" onclick="abrirSheetFn(()=>detalleCat('Estado cuenta'))"><span class="icon">📊</span><span class="label">Estado cuenta</span></button>
+      <div class="btn-grid three" id="query-cats-btns">
+        <span style="color:#555;font-size:12px">Cargando...</span>
       </div>
     </div>
 
     <div class="section">
-      <div class="section-title">Por tarjeta</div>
-      <div class="btn-grid">
-        <button class="btn amber" onclick="abrirSheet('detalle diners','Diners')"><span class="icon">💳</span>Diners</button>
-        <button class="btn amber" onclick="abrirSheet('detalle visa','Visa')"><span class="icon">💳</span>Visa</button>
-        <button class="btn amber" onclick="abrirSheet('detalle titanium','Titanium')"><span class="icon">💳</span>Titanium</button>
-        <button class="btn amber" onclick="abrirSheet('detalle deuna','DeUna')"><span class="icon">📱</span>DeUna</button>
-        <button class="btn amber" onclick="abrirSheet('detalle transfer','Transfer BP')"><span class="icon">🏦</span>Transfer BP</button>
+      <div class="section-title">Por método de pago</div>
+      <div class="btn-grid" id="query-mets-btns">
+        <span style="color:#555;font-size:12px">Cargando...</span>
       </div>
     </div>
   </div>
@@ -461,26 +448,13 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
       <div class="form-field">
         <label>Categoría</label>
         <div class="pill-group" id="cat-pills">
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Transporte">🚗 Transporte</div>
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Comida">🍔 Comida</div>
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Trámites">📋 Trámites</div>
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Estado cuenta">📊 Estado cuenta</div>
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Tienda">🛒 Tienda</div>
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Ocio">🎮 Ocio</div>
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Family">👨‍👩‍👧 Family</div>
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Arriendo">🏠 Arriendo</div>
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Necesidad">🧾 Necesidad</div>
-          <div class="pill" onclick="selectPill(this,'cat')" data-value="Herramienta">🔧 Herramienta</div>
+          <span style="color:#555;font-size:12px">Cargando...</span>
         </div>
       </div>
       <div class="form-field">
         <label>Método de pago</label>
         <div class="pill-group" id="met-pills">
-          <div class="pill" onclick="selectPill(this,'met')" data-value="Diners">💳 Diners</div>
-          <div class="pill" onclick="selectPill(this,'met')" data-value="Visa Signature">💳 Visa</div>
-          <div class="pill" onclick="selectPill(this,'met')" data-value="Titanium Euphoria">💳 Titanium</div>
-          <div class="pill" onclick="selectPill(this,'met')" data-value="DeUna!">📱 DeUna!</div>
-          <div class="pill" onclick="selectPill(this,'met')" data-value="Transfer BP">🏦 Transfer BP</div>
+          <span style="color:#555;font-size:12px">Cargando...</span>
         </div>
       </div>
     </div>
@@ -510,23 +484,8 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
   <!-- ── HISTORIAL ── -->
   <div class="page" id="page-historial">
-    <div class="hist-filter-wrap">
+    <div class="hist-filter-wrap" id="hist-filter-wrap">
       <button class="hist-filter-btn active" onclick="setFiltroHist('todos')">Todos</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Transporte')">🚗</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Comida')">🍔</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Ocio')">🎮</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Tienda')">🛒</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Trámites')">📋</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Family')">👨‍👩‍👧</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Arriendo')">🏠</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Necesidad')">🧾</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Herramienta')">🔧</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Estado cuenta')">📊</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Diners')">💳D</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Visa Signature')">💳V</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Titanium Euphoria')">💳T</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('DeUna!')">📱</button>
-      <button class="hist-filter-btn" onclick="setFiltroHist('Transfer BP')">🏦</button>
     </div>
     <div class="hist-filter-total" id="hist-filter-total">
       <span id="hist-filter-label" style="color:#888;font-size:12px;"></span>
@@ -726,10 +685,77 @@ function iniciarApp() {
   document.getElementById('comp-mes1').value = m1;
   document.getElementById('comp-mes2').value = m2;
   renderFavs();
+  cargarConfig();
   cargarHome();
   if (!sheetsUrl) {
     fetch(scriptUrl + '?cmd=info', { redirect: 'follow' })
       .then(r => r.json()).then(d => { if (d.sheets_url) { sheetsUrl = d.sheets_url; localStorage.setItem('finanzas_sheets_url', sheetsUrl); } }).catch(() => {});
+  }
+}
+
+// ── CARGA CONFIG DINÁMICA DESDE SHEETS ───────────────────
+let appConfig = { categorias: [], metodos: [] };
+
+function cargarConfig() {
+  if (!scriptUrl) return;
+  fetch(scriptUrl + '?cmd=config', { redirect: 'follow' })
+    .then(r => r.json())
+    .then(cfg => {
+      appConfig = cfg;
+      renderConfigUI();
+    })
+    .catch(() => {});
+}
+
+function renderConfigUI() {
+  const { categorias, metodos } = appConfig;
+
+  // Pills de categoría en formulario registrar
+  const catPills = document.getElementById('cat-pills');
+  if (catPills && categorias.length) {
+    catPills.innerHTML = categorias.map(c =>
+      `<div class="pill" onclick="selectPill(this,'cat')" data-value="${c.nombre}">${c.icono} ${c.nombre}</div>`
+    ).join('');
+  }
+
+  // Pills de método en formulario registrar
+  const metPills = document.getElementById('met-pills');
+  if (metPills && metodos.length) {
+    metPills.innerHTML = metodos.map(m => {
+      const ico = m.tipo === 'calendario' ? '💵' : '💳';
+      return `<div class="pill" onclick="selectPill(this,'met')" data-value="${m.nombre}">${ico} ${m.nombre}</div>`;
+    }).join('');
+  }
+
+  // Botones Por categoría en consultas
+  const qCats = document.getElementById('query-cats-btns');
+  if (qCats && categorias.length) {
+    qCats.innerHTML = categorias.map(c =>
+      `<button class="btn" onclick="abrirSheetFn(()=>detalleCat('${c.nombre}'))"><span class="icon">${c.icono}</span><span class="label">${c.nombre}</span></button>`
+    ).join('');
+  }
+
+  // Botones Por método en consultas
+  const qMets = document.getElementById('query-mets-btns');
+  if (qMets && metodos.length) {
+    qMets.innerHTML = metodos.map(m => {
+      const ico = m.tipo === 'calendario' ? '💵' : '💳';
+      return `<button class="btn amber" onclick="abrirSheetFn(()=>detalleMetodo('${m.nombre}'))"><span class="icon">${ico}</span>${m.nombre}</button>`;
+    }).join('');
+  }
+
+  // Filtros del historial
+  const histWrap = document.getElementById('hist-filter-wrap');
+  if (histWrap && categorias.length) {
+    const todosBtn = '<button class="hist-filter-btn active" onclick="setFiltroHist('todos')">Todos</button>';
+    const catBtns = categorias.map(c =>
+      `<button class="hist-filter-btn" onclick="setFiltroHist('${c.nombre}')">${c.icono}</button>`
+    ).join('');
+    const metBtns = metodos.map(m => {
+      const ico = m.tipo === 'calendario' ? '💵' : '💳';
+      return `<button class="hist-filter-btn" onclick="setFiltroHist('${m.nombre}')">${ico}</button>`;
+    }).join('');
+    histWrap.innerHTML = todosBtn + catBtns + metBtns;
   }
 }
 
