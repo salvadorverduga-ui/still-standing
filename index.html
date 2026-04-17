@@ -959,6 +959,33 @@ async function detalleCat(cat) {
   } catch(e) { bodyEl.innerHTML = '<span class="error">Error al cargar.</span>'; }
 }
 
+async function detalleMetodo(metodo) {
+  const titleEl = document.getElementById('sheet-title');
+  const bodyEl  = document.getElementById('sheet-body');
+  titleEl.textContent = metodo;
+  try {
+    const url = scriptUrl + '?cmd=detalle_metodo&metodo=' + encodeURIComponent(metodo) + '&mes=' + mesSeleccionado;
+    const res  = await fetch(url, { redirect: 'follow' });
+    const data = await res.json();
+    if (!data.items || !data.items.length) {
+      bodyEl.innerHTML = `<span style="color:#555;font-size:13px;">Sin gastos con ${metodo} este mes.</span>`;
+      return;
+    }
+    let html = `<div style="font-size:13px;color:#e8a838;font-weight:700;margin-bottom:12px;">${metodo} — ${data.periodo}</div>`;
+    data.items.forEach(item => {
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #1a1a1a;gap:8px;">
+        <span style="color:#666;font-size:11px;flex-shrink:0;">${item.fecha}</span>
+        <span style="color:#e0e0e0;flex:1;font-size:13px;">${item.descripcion}</span>
+        <span style="color:#888;font-size:11px;flex-shrink:0;">${item.categoria}</span>
+        <span style="color:#e07070;font-size:13px;font-weight:600;">$${item.monto}</span></div>`;
+    });
+    html += `<div style="border-top:1px solid #2a2a2a;margin-top:4px;padding-top:10px;display:flex;justify-content:space-between;">
+      <span style="color:#555;font-size:11px;text-transform:uppercase;">Total</span>
+      <span style="color:#fff;font-size:16px;font-weight:700;">$${data.total}</span></div>`;
+    bodyEl.innerHTML = html;
+  } catch(e) { bodyEl.innerHTML = '<span class="error">Error al cargar.</span>'; }
+}
+
 async function detalleIngresos() {
   const titleEl = document.getElementById('sheet-title');
   const bodyEl = document.getElementById('sheet-body');
