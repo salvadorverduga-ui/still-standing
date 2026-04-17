@@ -747,7 +747,7 @@ function renderConfigUI() {
   // Filtros del historial
   const histWrap = document.getElementById('hist-filter-wrap');
   if (histWrap && categorias.length) {
-    const todosBtn = '<button class="hist-filter-btn active" onclick="setFiltroHist('todos')">Todos</button>';
+    const todosBtn = '<button class="hist-filter-btn active" onclick="setFiltroHist(\'todos\')">Todos</button>';
     const catBtns = categorias.map(c =>
       `<button class="hist-filter-btn" onclick="setFiltroHist('${c.nombre}')">${c.icono}</button>`
     ).join('');
